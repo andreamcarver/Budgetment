@@ -10,13 +10,19 @@ class Home extends Component {
       width: 400
     };
     return (
-      <div>
-        <p>It's good to be home</p>
-        <img
-          style={imageStyle}
-          src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg"
-        />
-      </div>
+      <container>
+        <div>
+          <p>Welcome to Time Budgetment!</p>
+          <img
+            style={imageStyle}
+            src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg"
+          />
+        </div>
+        <div>
+          To get started, go to the <i>Your Projects</i> tab. From there, you
+          can add, edit, and delete both projects and tasks.
+        </div>
+      </container>
     );
   }
 }

@@ -50,6 +50,12 @@ class Navbar extends Component {
                 <Link to="/about" className="btn btn-link text-secondary">
                   <span className="text-secondary">about us</span>
                 </Link>
+                <Link
+                  to="/changeInputs"
+                  className="btn btn-link text-secondary"
+                >
+                  <span className="text-secondary">input</span>
+                </Link>
                 <Link to="/help" className="btn btn-link text-secondary">
                   <span className="text-secondary">help</span>
                 </Link>

@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import Home from "./components/home";
 import About from "./components/about";
 import Project from "./components/projects";
+import ChangeInput from "./components/changeInput";
 
 class App extends Component {
   constructor() {
@@ -66,7 +67,9 @@ class App extends Component {
           render={() => <LoginForm updateUser={this.updateUser} />}
         />
         <Route path="/signup" render={() => <Signup />} />
+        <Route path="/changeInputs" render={() => <ChangeInput />} />
         <Route path="/about" render={() => <About />} />
+
         <Route path="/projects" render={() => <Project />} />
       </div>
     );
