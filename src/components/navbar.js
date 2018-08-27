@@ -41,6 +41,18 @@ class Navbar extends Component {
           <div className="col-4">
             {loggedIn ? (
               <section className="navbar-section">
+                <Link to="/" className="btn btn-link text-secondary">
+                  <span className="text-secondary">home</span>
+                </Link>
+                <Link to="/projects" className="btn btn-link text-secondary">
+                  <span className="text-secondary">your projects</span>
+                </Link>
+                <Link to="/about" className="btn btn-link text-secondary">
+                  <span className="text-secondary">about us</span>
+                </Link>
+                <Link to="/help" className="btn btn-link text-secondary">
+                  <span className="text-secondary">help</span>
+                </Link>
                 <Link
                   to="#"
                   className="btn btn-link text-secondary"
@@ -66,7 +78,7 @@ class Navbar extends Component {
           <div className="col-4 col-mr-auto">
             <div id="top-filler" />
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">MERN Passport</h1>
+            <h1 className="App-title">Money Budgetment</h1>
           </div>
         </header>
       </div>

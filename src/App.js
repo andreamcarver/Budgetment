@@ -6,6 +6,8 @@ import Signup from "./components/sign-up";
 import LoginForm from "./components/login-form";
 import Navbar from "./components/navbar";
 import Home from "./components/home";
+import About from "./components/about";
+import Project from "./components/projects";
 
 class App extends Component {
   constructor() {
@@ -54,7 +56,9 @@ class App extends Component {
       <div className="App">
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
-        {this.state.loggedIn && <p>Join the party, {this.state.username}!</p>}
+        {this.state.loggedIn && (
+          <p>Currently logged in as {this.state.username}</p>
+        )}
         {/* Routes to different components */}
         <Route exact path="/" component={Home} />
         <Route
@@ -62,6 +66,8 @@ class App extends Component {
           render={() => <LoginForm updateUser={this.updateUser} />}
         />
         <Route path="/signup" render={() => <Signup />} />
+        <Route path="/about" render={() => <About />} />
+        <Route path="/projects" render={() => <Project />} />
       </div>
     );
   }
