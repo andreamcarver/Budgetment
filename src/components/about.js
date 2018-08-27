@@ -4,7 +4,7 @@ class About extends Component {
   render() {
     return (
       <container>
-        <h1>Welcome to Money Budgetment</h1>
+        <h1>Welcome to Time Budgetment</h1>
         <div className="aboutDescription">
           This is a simple web application perfect for freelancers, remote
           workers, or anyone who doesn't work a 9 to 5 job that would like to
