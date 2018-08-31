@@ -1,0 +1,25 @@
+GET https://example.com/comments/1 HTTP/1.1
+
+###
+
+GET https://example.com/topics/1 HTTP/1.1
+
+###
+
+POST http://localhost:8080/user HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+
+POST http://localhost:8080/api/projects HTTP/1.1
+content-type: application/json
+
+{
+    "projectTitle": "Hello",
+    "userId": "5b89abee84bda8136822f6e5"
+}
