@@ -9,6 +9,7 @@ class ChangeInput extends Component {
     };
 
     this.changeText = this.changeText.bind(this);
+    this.handleNewThing = this.handleNewThing.bind(this);
   }
 
   changeText(event) {
@@ -18,7 +19,7 @@ class ChangeInput extends Component {
   }
 
   handleNewThing(event) {
-    console.log("beef");
+    console.log("Beef is delicious");
   }
 
   render() {

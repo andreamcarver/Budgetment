@@ -12,7 +12,7 @@ class Home extends Component {
     return (
       <container>
         <div>
-          <p>Welcome to Time Budgetment!</p>
+          <p className="rcorners1">Welcome to Time Budgetment!</p>
           <img
             style={imageStyle}
             src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg"
