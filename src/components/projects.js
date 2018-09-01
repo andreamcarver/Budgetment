@@ -44,6 +44,17 @@ class Project extends Component {
     }
   }
 
+  async getProject(data){
+    try {
+      await axios.get("api/projects", {
+        // console.log("Working")
+      });
+       
+    } catch (err){
+      console.log("error")
+    }
+  
+
   async addNewTask(data){
     try{
       await axios.post("/api/tasks", {
