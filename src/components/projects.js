@@ -16,14 +16,42 @@ class Project extends Component {
     tasks: ["water the plants, ", "cook"]
   };
 
-  //handleNewProject crashes the program if cancel is hit on the alert
+  //TODO i might not need this function
+  // handleNewProject  the program if cancel is hit on the alert
   handleNewProject(event) {
     console.log("Hi");
     let message = prompt(
       "What is the name of the project that you'd like to add?"
     ).valueOf();
+    try {await axios.post("/projects", {
+      projectTitle: message,
+      userId: "1234"
+    })}
+    catch (err){
+    console.log("something went wrong")};
     event.preventDefault();
     console.log(message);
+  }
+
+  async addNewProject(data) {
+    try {
+      await axios.post("/api/projects", {
+        projectTitle: data.projectTitle,
+        userId: data.userId
+      });
+    } catch (err) {
+      console.log("something went wrong");
+    }
+  }
+
+  async addNewTask(data){
+    try{
+      await axios.post("/api/tasks", {
+        taskTitle: data.taskTitle
+      })
+    } catch (err){
+      console.log("error")
+    }
   }
 
   handleNewTask(event) {

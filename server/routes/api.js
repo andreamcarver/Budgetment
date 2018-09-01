@@ -1,7 +1,6 @@
 const express = require("express");
-var Project = require("../database/models/project");
+const { Project, Task } = require("../database/models");
 const router = express.Router();
-var Task = require("../database/models/task");
 
 router.get("/projects/:id", (req, res, next) => {
   console.log("===== project!!======");
@@ -21,6 +20,7 @@ Project.find({ userId: Number }, function(err, projects) {
   // ‘projects’ contains the list of projects that match the criteria.
 });
 
+//POST route for projects
 router.post("/projects", (req, res, next) => {
   console.log(req.body);
   console.log("Hello");
@@ -41,10 +41,29 @@ router.post("/projects", (req, res, next) => {
 //   handleError(err);
 // });
 
-router.post("/task", (req, res, next) => {
+//POST route for tasks
+router.post("/tasks", (req, res, next) => {
   try {
     console.log(req.body);
     res.json = Task.create(req.body);
+  } catch (err) {}
+  console.log(err);
+});
+
+//POST route for expenses
+router.post("/expenses", (req, res, next) => {
+  try {
+    console.log(req.body);
+    res.json = Expense.create(req.body);
+  } catch (err) {}
+  console.log(err);
+});
+
+//POST route for earnings
+router.post("/earningss", (req, res, next) => {
+  try {
+    console.log(req.body);
+    res.json = Earning.create(req.body);
   } catch (err) {}
   console.log(err);
 });
