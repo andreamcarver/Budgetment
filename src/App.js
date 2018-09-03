@@ -40,13 +40,15 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          username: response.data.user.username,
+          userId: response.data.user._id
         });
       } else {
         console.log("Get user: no user");
         this.setState({
           loggedIn: false,
-          username: null
+          username: null,
+          userId: null
         });
       }
     });
@@ -66,11 +68,15 @@ class App extends Component {
           path="/login"
           render={() => <LoginForm updateUser={this.updateUser} />}
         />
-        <Route path="/signup" render={() => <Signup />} />
+        <Route path="/signup" component={Signup} />
         <Route path="/changeInputs" render={() => <ChangeInput />} />
         <Route path="/about" render={() => <About />} />
 
-        <Route path="/projects" render={() => <Project />} />
+        <Route
+          path="/projects"
+          userId={this.state.userId} //passes userID to project page
+          render={() => <Project />}
+        />
       </div>
     );
   }
