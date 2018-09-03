@@ -13,54 +13,36 @@ import ChangeInput from "./components/changeInput";
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      loggedIn: false,
-      username: null
-    };
+    this.state = { user: null };
 
-    this.getUser = this.getUser.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.updateUser = this.updateUser.bind(this);
   }
 
-  componentDidMount() {
-    this.getUser();
+  async componentDidMount() {
+    // get the user and assign to state
+    try {
+      const response = await axios.get("/user/");
+      console.log("Get user response: ", response.data);
+      this.setState({ user: response.data.user });
+    } catch (err) {
+      console.log("something went wrong", err);
+    }
   }
 
   updateUser(userObject) {
     this.setState(userObject);
   }
 
-  getUser() {
-    axios.get("/user/").then(response => {
-      console.log("Get user response: ");
-      console.log(response.data);
-      if (response.data.user) {
-        console.log("Get User: There is a user saved in the server session: ");
-
-        this.setState({
-          loggedIn: true,
-          username: response.data.user.username,
-          userId: response.data.user._id
-        });
-      } else {
-        console.log("Get user: no user");
-        this.setState({
-          loggedIn: false,
-          username: null,
-          userId: null
-        });
-      }
-    });
-  }
-
   render() {
+    console.log('the state = ', this.state);
+    const userId = this.state.user ? this.state.user._id : null;
     return (
       <div className="App">
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        <Navbar updateUser={this.updateUser} user={this.state.user} />
         {/* greet user if logged in: */}
-        {this.state.loggedIn && (
-          <p>Currently logged in as {this.state.username}</p>
+        {this.state.user && (
+          <p>Currently logged in as {this.state.user.username}</p>
         )}
         {/* Routes to different components */}
         <Route exact path="/" component={Home} />
@@ -74,7 +56,7 @@ class App extends Component {
 
         <Route
           path="/projects"
-          userId={this.state.userId} //passes userID to project page
+          userId={userId} //passes userID to project page
           render={() => <Project />}
         />
       </div>

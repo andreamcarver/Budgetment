@@ -8,6 +8,9 @@ class Project extends Component {
     this.state = {
       projects: []
     };
+    console.log("in construct", props);
+    this.handleNewProject = this.handleNewProject.bind(this);
+    console.log("this ", this.props);
   }
 
   //upon componet mounting
@@ -20,19 +23,20 @@ class Project extends Component {
   // handleNewProject  the program if cancel is hit on the alert
   async handleNewProject(event) {
     console.log("Hi");
-    event.preventDefault()
+    event.preventDefault();
     let message = prompt(
       "What is the name of the project that you'd like to add?"
     ).valueOf();
     try {
+      console.log("props =", this.props);
       await axios.post("/api/projects", {
         projectTitle: message,
         userId: this.props.userId
       });
     } catch (err) {
-      console.log("something went wrong");
+      console.log("something went wrong", err);
     }
-        console.log(message);
+    console.log(message);
   }
 
   async addNewProject(data) {

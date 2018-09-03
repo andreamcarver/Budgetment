@@ -11,27 +11,21 @@ class Navbar extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  logout(event) {
+  async logout(event) {
     event.preventDefault();
     console.log("logging out");
-    axios
-      .post("/user/logout")
-      .then(response => {
-        console.log(response.data);
-        if (response.status === 200) {
-          this.props.updateUser({
-            loggedIn: false,
-            username: null
-          });
-        }
-      })
-      .catch(error => {
-        console.log("Logout error");
-      });
+    try {
+      const response = await axios.post("/user/logout");
+      console.log(response.data);
+      this.props.updateUser({ user: null });
+    } catch (err) {
+      console.log("Logout error", err);
+    }
   }
 
   render() {
-    const loggedIn = this.props.loggedIn;
+    console.log('current user ***',this.props.user)
+    const loggedIn = this.props.user != null;
     console.log("navbar render, props: ");
     console.log(this.props);
 
