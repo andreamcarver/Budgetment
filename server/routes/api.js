@@ -1,23 +1,29 @@
 const express = require("express");
-const { Project, Task } = require("../database/models");
+const Project = require("../database/models/project");
+//const { Project, Task, Earning, Expense } = require("../database/models");
 const router = express.Router();
 
-router.get("/projects/:id", (req, res, next) => {
+router.get("/projects/:id", async (req, res, next) => {
   console.log("===== project!!======");
-  console.log(req.project);
-  console.log(req.id);
-  if (req.project) {
-    res.json({ user: req.user });
-  } else {
-    res.json({ user: null });
+  console.log(req.params.id);
+  //console.log(Project);
+  try {
+    // find all projects associated to a user Id
+    const projects = await Project.find({ userId: req.params.id });
+
+    for (project of projects) {
+      project.tasks = await Task.find({ projectId: project._id });
+    }
+    console.log("projects =", projects);
+    res.json = projects;
+  } catch (err) {
+    console.log("something went wrong", err);
   }
 });
 
-// find all projects associated to a user Id
-Project.find({ userId: Number }, function(err, projects) {
-  if (err) return console.log(err);
-  else console.log(projects);
-  // ‘projects’ contains the list of projects that match the criteria.
+router.get("/tasks/:id", (req, res, next) => {
+  console.log("TASK");
+  console.log("Fetching task");
 });
 
 //POST route for projects
@@ -60,7 +66,7 @@ router.post("/expenses", (req, res, next) => {
 });
 
 //POST route for earnings
-router.post("/earningss", (req, res, next) => {
+router.post("/earnings", (req, res, next) => {
   try {
     console.log(req.body);
     res.json = Earning.create(req.body);

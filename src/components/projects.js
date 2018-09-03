@@ -5,20 +5,20 @@ class Project extends Component {
   constructor() {
     super();
     this.state = {
-      project: ""
+      projects: []
     };
   }
 
-  //testing data, need to change it from hardcode to reading the database
-  data = {
-    test: "test",
-    description: "test description",
-    tasks: ["water the plants, ", "cook"]
-  };
+  //upon componet mounting
+  async componentDidMount(){
+    const user = ''
+    this.state.projects = await axios.get(`/projects/${user}`)
+  }
+
 
   //TODO i might not need this function
   // handleNewProject  the program if cancel is hit on the alert
-  handleNewProject(event) {
+  async handleNewProject(event) {
     console.log("Hi");
     let message = prompt(
       "What is the name of the project that you'd like to add?"
@@ -49,11 +49,12 @@ class Project extends Component {
       await axios.get("api/projects", {
         // console.log("Working")
       });
-       
+
     } catch (err){
       console.log("error")
     }
-  
+  }
+
 
   async addNewTask(data){
     try{
@@ -76,38 +77,20 @@ class Project extends Component {
   //     };
   //   }
   render() {
+    const projectList = this.state.projects.map( aProject => {
+      <div className="projectCard">
+      <h3>{aProject.projectTitle}</h3>
+      </div>            
+    })
+    const taskList = this.state.tasks.map( aTask => {
+      <h5>{aTask.taskName}</h5>
+    })
+
     return (
       <container>
         <h1>Your Projects</h1>
         <button onClick={this.handleNewProject}>Add New Project</button>
-
-        <div className="projectCard">
-          <h3>{this.data.test}</h3>
-          <div>
-            <h4>{this.data.description}</h4>
-            <h4>Tasks: {this.data.tasks}</h4>
-            <li>{this.datalistItems}</li>
-          </div>
-        </div>
-        <div className="projectCard">
-          <h3>Babysitting</h3>
-          <div>
-            <h4>Watching the kids for Bob and Julie</h4>
-          </div>
-          <div>
-            <button onClick={this.handleNewTask}>Add Task</button>
-          </div>
-        </div>
-        <div className="projectCard">
-          <h3>Freelance</h3>
-          <div>
-            <h4>Freelance Web Dev for Drupal</h4>
-          </div>
-          <div>
-            <button>Add Task</button>
-            <button id="myBtn">Open Modal</button>
-          </div>
-        </div>
+        {projectList}      
       </container>
     );
   }

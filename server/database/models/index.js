@@ -1,6 +1,6 @@
-const Earnings = require("earnings"),
-  Expense = require("expense"),
-  Project = require("project"),
-  Task = require("task");
+const //Earning = require("./earning"),
+  // Expense = require("./expense"),
+  Project = require("./project"),
+  Task = require("./task");
 
-module.exports = { Earning, Espense, Project, Task };
+module.exports = { Earning, Expense, Project, Task };
