@@ -8,7 +8,6 @@
     "start": "node server/server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "proxy": "http://localhost:8080",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",

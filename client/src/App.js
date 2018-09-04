@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 // components
 import Signup from "./components/sign-up";
 import LoginForm from "./components/login-form";
@@ -35,8 +35,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('the state = ', this.state);
-    const userId = this.state.user ? this.state.user._id : null;
+    console.log("the state = ", this.state);
     return (
       <div className="App">
         <Navbar updateUser={this.updateUser} user={this.state.user} />
@@ -56,8 +55,7 @@ class App extends Component {
 
         <Route
           path="/projects"
-          userId={userId} //passes userID to project page
-          render={() => <Project />}
+          render={() => <Project user={this.state.user} />}
         />
       </div>
     );

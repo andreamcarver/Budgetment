@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../logo.svg";
 import "../App.css";
 import axios from "axios";
@@ -24,7 +23,7 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log('current user ***',this.props.user)
+    console.log("current user ***", this.props.user);
     const loggedIn = this.props.user != null;
     console.log("navbar render, props: ");
     console.log(this.props);
@@ -54,7 +53,7 @@ class Navbar extends Component {
                   <span className="text-secondary">help</span>
                 </Link>
                 <Link
-                  to="#"
+                  to="/login"
                   className="btn btn-link text-secondary"
                   onClick={this.logout}
                 >

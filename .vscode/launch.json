@@ -7,8 +7,25 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Server",
       "program": "${workspaceFolder}/server/server.js"
+      // "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Client",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}/client",
+      "sourceMapPathOverrides": {
+        "webpack:///client/*": "${webRoot}/*"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Server/Client",
+      "configurations": ["Client", "Server"]
     }
   ]
 }

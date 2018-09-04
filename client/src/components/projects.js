@@ -13,95 +13,46 @@ class Project extends Component {
     console.log("this ", this.props);
   }
 
-  //upon componet mounting
-  async componentDidMount() {
-    const user = this.props.userId;
-    this.state.projects = await axios.get(`/api/projects/${user}`);
+  // upon componet mounting
+  componentDidMount() {
+    this.updateProjectList();
+  }
+  async updateProjectList() {
+    if (this.props.user) {
+      const response = await axios.get(`/api/projects/${this.props.user._id}`);
+      this.setState({ projects: response.data }); // the list of projects
+    }
   }
 
-  //TODO i might not need this function
+  // TODO i might not need this function
   // handleNewProject  the program if cancel is hit on the alert
   async handleNewProject(event) {
-    console.log("Hi");
+    console.log("enter create new project");
     event.preventDefault();
-    let message = prompt(
+    const message = prompt(
       "What is the name of the project that you'd like to add?"
-    ).valueOf();
-    try {
-      console.log("props =", this.props);
-      await axios.post("/api/projects", {
-        projectTitle: message,
-        userId: this.props.userId
-      });
-    } catch (err) {
-      console.log("something went wrong", err);
-    }
-    console.log(message);
-  }
-
-  async addNewProject(data) {
+    );
+    if (!message) return;
+    const projectTitle = message.valueOf();
     try {
       await axios.post("/api/projects", {
-        projectTitle: data.projectTitle,
-        userId: this.props.userId
+        projectTitle: projectTitle,
+        userId: this.props.user._id
       });
+      this.updateProjectList();
     } catch (err) {
-      console.log("something went wrong");
+      console.log("something went wrong adding Project", err);
     }
   }
 
-  async getProject(data) {
-    try {
-      await axios.get("api/projects", {
-        // console.log("Working")
-      });
-    } catch (err) {
-      console.log("error");
-    }
-  }
-
-  async addNewTask(data) {
-    try {
-      await axios.post("/api/tasks", {
-        taskTitle: data.taskTitle
-      });
-    } catch (err) {
-      console.log("error");
-    }
-  }
-
-  handleNewTask(event) {
-    console.log("project");
-  }
-
-  //   constructor() {
-  //     super();
-  //     this.state = {
-  //       project: ""
-  //     };
-  //   }
   render() {
     const projectList = this.state.projects.map(aProject => {
-      return;
-      <div className="projectCard">
-        <h3>{aProject.projectTitle}</h3>
-        {aProject.tasks.map(aTask => {
-          return;
-          <h5>{aTask.taskName}</h5>;
-        })}
-      </div>;
+      return (
+        <div className="projectCard">
+          <h3>{aProject.projectTitle}</h3>
+        </div>
+      );
     });
-
-    // const projectList = this.state.projects.map(aProject => {
-    //   return;
-    //   <div className="projectCard">
-    //     <h3>{aProject.projectTitle}</h3>
-    //   </div>;
-    // });
-    // const taskList = this.state.tasks.map(aTask => {
-    //   return;
-    //   <h5>{aTask.taskName}</h5>;
-    // });
 
     return (
       <container>

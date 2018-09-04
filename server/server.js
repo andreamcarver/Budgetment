@@ -45,5 +45,5 @@ app.use("/api", api); //projects route (probably is redundant)
 
 // Starting Server
 app.listen(PORT, () => {
-  console.log(`App listening on PORT: 8080`);
+  console.log(`App listening on PORT: ${PORT}`);
 });

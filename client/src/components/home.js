@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 class Home extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     const imageStyle = {
       width: 400
@@ -14,6 +10,7 @@ class Home extends Component {
         <div>
           <p className="rcorners1">Welcome to Time Budgetment!</p>
           <img
+            alt="home"
             style={imageStyle}
             src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg"
           />
