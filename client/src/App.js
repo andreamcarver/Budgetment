@@ -7,7 +7,7 @@ import LoginForm from "./components/login-form";
 import Navbar from "./components/navbar";
 import Home from "./components/home";
 import About from "./components/about";
-import Project from "./components/projects";
+import Projects from "./components/projects";
 import ChangeInput from "./components/changeInput";
 
 class App extends Component {
@@ -55,7 +55,7 @@ class App extends Component {
 
         <Route
           path="/projects"
-          render={() => <Project user={this.state.user} />}
+          render={() => <Projects user={this.state.user} />}
         />
       </div>
     );

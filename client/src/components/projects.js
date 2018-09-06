@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Project from "./project";
 //TO GRAB USER ID, USE this.props.userId
 
-class Project extends Component {
+class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,20 +49,36 @@ class Project extends Component {
   render() {
     const projectList = this.state.projects.map(aProject => {
       return (
-        <div className="projectCard">
+        <div>
           <h3>{aProject.projectTitle}</h3>
+          <div className="projectCard">
+            {aProject.tasks.map(aTask => {
+              return (
+                <div>
+                  {aTask.taskName} <br /> {aTask.taskDescription}
+                </div>
+              );
+            })}
+
+            <button>View/Add Project Details</button>
+            <p>
+              <button>Delete Project</button>
+            </p>
+          </div>
         </div>
       );
     });
 
     return (
-      <container>
+      <div>
         <h1>Your Projects</h1>
         <button onClick={this.handleNewProject}>Add New Project</button>
-        {projectList}
-      </container>
+        {this.state.projects.map(p => {
+          return <Project data={p} />;
+        })}
+      </div>
     );
   }
 }
 
-export default Project;
+export default Projects;

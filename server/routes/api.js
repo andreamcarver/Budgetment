@@ -1,5 +1,6 @@
 const express = require("express");
 const Project = require("../database/models/project");
+const Task = require("../database/models/task");
 //const { Project, Task, Earning, Expense } = require("../database/models");
 const router = express.Router();
 
@@ -14,9 +15,14 @@ router.get("/projects/:id", async (req, res, next) => {
       "projectTitle"
     ).lean();
 
-    // for (project of projects) {
-    //   project.tasks = await Task.find({ projectId: project._id });
-    // }
+    for (project of projects) {
+      console.log(project.projectTitle);
+      project.tasks = await Task.find(
+        { projectId: project._id },
+        "taskName taskDescription"
+      ).lean();
+      console.log("added tasks", project.tasks);
+    }
     console.log("projects =", projects);
     res.json(projects);
   } catch (err) {
