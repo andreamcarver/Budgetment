@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Project from "./project";
+import ProjectForm from "./project-form";
 //TO GRAB USER ID, USE this.props.userId
 
 class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      projects: [],
+      modalIsOpen: false
     };
     console.log("in construct", props);
     this.handleNewProject = this.handleNewProject.bind(this);
+    this.foo = this.foo.bind(this);
     console.log("this ", this.props);
   }
 
@@ -30,47 +33,21 @@ class Projects extends Component {
   async handleNewProject(event) {
     console.log("enter create new project");
     event.preventDefault();
-    const message = prompt(
-      "What is the name of the project that you'd like to add?"
-    );
-    if (!message) return;
-    const projectTitle = message.valueOf();
-    try {
-      await axios.post("/api/projects", {
-        projectTitle: projectTitle,
-        userId: this.props.user._id
-      });
-      this.updateProjectList();
-    } catch (err) {
-      console.log("something went wrong adding Project", err);
-    }
+    this.setState({ modalIsOpen: true });
+  }
+  foo() {
+    this.setState({ modalIsOpen: false });
+    this.updateProjectList();
   }
 
   render() {
-    const projectList = this.state.projects.map(aProject => {
-      return (
-        <div>
-          <h3>{aProject.projectTitle}</h3>
-          <div className="projectCard">
-            {aProject.tasks.map(aTask => {
-              return (
-                <div>
-                  {aTask.taskName} <br /> {aTask.taskDescription}
-                </div>
-              );
-            })}
-
-            <button>View/Add Project Details</button>
-            <p>
-              <button>Delete Project</button>
-            </p>
-          </div>
-        </div>
-      );
-    });
-
     return (
       <div>
+        <ProjectForm
+          user={this.props.user}
+          show={this.state.modalIsOpen}
+          dismissDialog={this.foo}
+        />
         <h1>Your Projects</h1>
         <button onClick={this.handleNewProject}>Add New Project</button>
         {this.state.projects.map(p => {

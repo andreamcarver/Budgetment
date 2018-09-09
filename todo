@@ -1,4 +1,4 @@
-test create new project in mongoose
+test create new project in mongoose //done
 create new task in mongoose
 create new expense in mongoose
 refactor package.json to ease deploy // done
@@ -7,3 +7,4 @@ getUser to use await line 34 app.js // done
 change server to serve public files
 test deploy to heroku 
 Make Dialog component
+Component for new project (modal)

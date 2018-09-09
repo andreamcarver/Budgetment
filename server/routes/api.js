@@ -7,7 +7,6 @@ const router = express.Router();
 router.get("/projects/:id", async (req, res, next) => {
   console.log("===== project!!======");
   console.log(req.params.id);
-  //console.log(Project);
   try {
     // find all projects associated to a user Id
     const projects = await Project.find(
