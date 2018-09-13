@@ -9,6 +9,10 @@ class Task extends Component {
         {theTask.taskName}
         <br />
         {theTask.taskDescription}
+        <br />
+        {theTask.taskRatePerHour}
+        <button>Add</button>
+        <button>Spend</button>
       </div>
     );
   }

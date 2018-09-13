@@ -9,10 +9,12 @@ class Projects extends Component {
     super(props);
     this.state = {
       projects: [],
+      show: [],
       modalIsOpen: false
     };
     console.log("in construct", props);
     this.handleNewProject = this.handleNewProject.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
     this.foo = this.foo.bind(this);
     console.log("this ", this.props);
   }
@@ -40,6 +42,21 @@ class Projects extends Component {
     this.updateProjectList();
   }
 
+  async handleExpand(id) {
+    console.log("Expanding", id);
+    //index is equal to indexOf id; if its -1, id does not exist in the array
+    const index = this.state.show.indexOf(id);
+    let newShow = Array.from(this.state.show);
+    if (index != -1) {
+      //if index is not equal to -1, collapse task info via splice
+      newShow.splice(index, 1);
+    } else {
+      //otherwise expand task info
+      newShow.push(id);
+    }
+    this.setState({ show: newShow });
+  }
+
   render() {
     return (
       <div>
@@ -51,7 +68,14 @@ class Projects extends Component {
         <h1>Your Projects</h1>
         <button onClick={this.handleNewProject}>Add New Project</button>
         {this.state.projects.map(p => {
-          return <Project data={p} />;
+          const id = p._id;
+          return (
+            <Project
+              data={p}
+              expand={this.state.show.includes(id)}
+              handleExpand={this.handleExpand}
+            />
+          );
         })}
       </div>
     );

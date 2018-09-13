@@ -7,7 +7,7 @@ class Tasks extends Component {
     this.state = {
       taskName: "",
       taskDescription: "",
-      costPerHour: 0
+      taskRatePerHour: 0
     };
     this.handleTaskChange = this.handleTaskChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
