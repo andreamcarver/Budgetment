@@ -8,6 +8,8 @@ class Project extends Component {
     return (
       <div>
         <h3>{aProject.projectTitle}</h3>
+        <h5>${aProject.projectBudget}</h5>
+        <h6>{new Date(aProject.projectDate).toDateString()}</h6>
         {aProject.tasks.map(t => (
           <Task data={t} />
         ))}

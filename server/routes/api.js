@@ -11,7 +11,7 @@ router.get("/projects/:id", async (req, res, next) => {
     // find all projects associated to a user Id
     const projects = await Project.find(
       { userId: req.params.id },
-      "projectTitle"
+      "projectTitle projectBudget projectDate"
     ).lean();
 
     for (project of projects) {
