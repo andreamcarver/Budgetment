@@ -33,6 +33,7 @@ router.get("/projects/:id", async (req, res, next) => {
 router.post("/projects", async (req, res, next) => {
   console.log("Creating a project using", req.body);
   try {
+    console.log(req.body.projectBudget);
     res.json(await Project.create(req.body));
   } catch (err) {
     console.log("something went wrong creating a project", err);
@@ -52,7 +53,7 @@ router.post("/tasks", async (req, res, next) => {
     console.log(req.body);
     res.json(await Task.create(req.body).lean());
   } catch (err) {
-    console.log("something wen wrong creating a task", err);
+    console.log("something went wrong creating a task", err);
   }
 });
 

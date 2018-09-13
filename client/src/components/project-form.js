@@ -111,6 +111,9 @@ class ProjectForm extends Component {
               <div className="col-3 col-mr-auto">
                 <input
                   className="form-input"
+                  placeholder="projectBudget"
+                  type="projectBudget"
+                  name="projectBudget"
                   value={this.state.projectBudget}
                   onChange={this.handleChange}
                 />
