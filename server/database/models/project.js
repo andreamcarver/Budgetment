@@ -7,6 +7,14 @@ const ProjectSchema = new Schema({
     type: String,
     required: true
   },
+  projectDescription: {
+    type: String,
+    required: false
+  },
+  projectBudget: {
+    type: Number,
+    required: true
+  },
   userId: { type: Schema.Types.ObjectId, ref: "User" }
 });
 

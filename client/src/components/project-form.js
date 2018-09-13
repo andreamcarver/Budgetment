@@ -6,7 +6,8 @@ class ProjectForm extends Component {
     super();
     this.state = {
       projectName: "",
-      projectDescription: ""
+      projectDescription: "",
+      projectBudget: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,11 +23,12 @@ class ProjectForm extends Component {
     event.preventDefault();
 
     try {
-      console.log("saving new project");
+      console.log("saving new budget");
       const response = await axios.post("/api/projects", {
-        projectTitle: this.state.projectTitle,
-        projectDescription: this.state.projectDescription,
-        userId: this.props.user._id
+        projectTitle: this.state.projectTitle, //budgetname
+        projectDescription: this.state.projectDescription, //budget desc
+        projectBudget: this.state.projectBudget, //budget amount
+        userId: this.props.user._id //user id for database access
       });
       this.props.dismissDialog();
       // dismiss dialog and refres project list
@@ -98,6 +100,18 @@ class ProjectForm extends Component {
                   type="projectDescription"
                   name="projectDescription"
                   value={this.state.projectDescription}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-1 col-ml-auto">
+                <label className="form-label">Budget Amount</label>
+              </div>
+              <div className="col-3 col-mr-auto">
+                <input
+                  className="form-input"
+                  value={this.state.projectBudget}
                   onChange={this.handleChange}
                 />
               </div>
