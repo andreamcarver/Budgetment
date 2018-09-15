@@ -19,6 +19,10 @@ router.get("/projects/:id", async (req, res, next) => {
         { projectId: project._id },
         "taskName taskHours taskRate"
       ).lean();
+      project.actualBudget = 0;
+      for (task of project.tasks) {
+        project.actualBudget += task.taskHours * task.taskRate;
+      }
     }
     console.log("projects =", projects);
     res.json(projects);
@@ -39,9 +43,8 @@ router.post("/projects", async (req, res, next) => {
 });
 
 // tasks routes
-
 router.get("/tasks/:id", (req, res, next) => {
-  console.log("TASK");
+  console.log(req.body);
   console.log("Fetching task");
 });
 
@@ -49,7 +52,7 @@ router.get("/tasks/:id", (req, res, next) => {
 router.post("/tasks", async (req, res, next) => {
   try {
     console.log(req.body);
-    res.json(await Task.create(req.body).lean());
+    res.json(await Task.create(req.body));
   } catch (err) {
     console.log("something went wrong creating a task", err);
   }

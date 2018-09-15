@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Project from "./project";
 import ProjectForm from "./project-form";
+import TaskForm from "./tasks";
 //TO GRAB USER ID, USE this.props.userId
 
 class Projects extends Component {
@@ -11,12 +12,15 @@ class Projects extends Component {
       projects: [],
       show: [],
       modalIsOpen: false,
-      taskModalIsOpen: false
+      taskModalIsOpen: false,
+      projectId: null
     };
     console.log("in construct", props);
     this.handleNewProject = this.handleNewProject.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
-    this.foo = this.foo.bind(this);
+    this.submitNewProject = this.submitNewProject.bind(this);
+    this.handleAddTask = this.handleAddTask.bind(this);
+    this.submitNewTask = this.submitNewTask.bind(this);
     console.log("this ", this.props);
   }
 
@@ -37,16 +41,21 @@ class Projects extends Component {
     this.setState({ modalIsOpen: true });
   }
 
-  foo() {
+  submitNewProject() {
     this.setState({ modalIsOpen: false });
     this.updateProjectList();
   }
 
+  submitNewTask() {
+    this.setState({ taskModalIsOpen: false });
+    this.updateProjectList();
+  }
+
   //IS this gonna work??
-  async handleNewTask(event) {
-    console.log("creating new task");
+  async handleAddTask(event, id) {
+    console.log("creating new task", id);
     event.preventDefault();
-    this.setState({ taskModalIsOpen: true });
+    this.setState({ projectId: id, taskModalIsOpen: true });
   }
 
   async handleExpand(id) {
@@ -70,9 +79,14 @@ class Projects extends Component {
         <ProjectForm
           user={this.props.user}
           show={this.state.modalIsOpen}
-          dismissDialog={this.foo}
+          dismissDialog={this.submitNewProject}
         />
-        <h1>Your Projects</h1>
+        <TaskForm
+          projectId={this.state.projectId}
+          show={this.state.taskModalIsOpen}
+          dismissDialog={this.submitNewTask}
+        />
+        ;<h1>Your Projects</h1>
         <button onClick={this.handleNewProject}>Add New Project</button>
         {this.state.projects.map(p => {
           const id = p._id;
@@ -81,6 +95,7 @@ class Projects extends Component {
               data={p}
               expand={this.state.show.includes(id)}
               handleExpand={this.handleExpand}
+              handleAddTask={this.handleAddTask}
             />
           );
         })}

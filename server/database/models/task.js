@@ -6,8 +6,7 @@ const TaskSchema = new Schema({
   taskName: String,
   taskRate: Number,
   taskHours: Number,
-  projectId: Schema.Types.ObjectId,
-  _id: Schema.Types.ObjectId
+  projectId: Schema.Types.ObjectId
 });
 
 const Task = mongoose.model("Task", TaskSchema);

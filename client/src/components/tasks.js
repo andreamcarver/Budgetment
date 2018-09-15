@@ -1,24 +1,3 @@
-// import React, { Component } from "react";
-// import axios from "axios";
-
-// class Tasks extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       taskName: "",
-//       taskDescription: "",
-//       taskRatePerHour: 0
-//     };
-//     this.handleTaskChange = this.handleTaskChange.bind(this);
-//     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-//     this.handleCostChange = this.handleCostChange.bind(this);
-//   }
-
-//   render() {
-//     return <button onClick={submitTask}>Submit Task</button>;
-//   }
-// }
-
 import React, { Component } from "react";
 import axios from "axios";
 
@@ -41,16 +20,29 @@ class TaskForm extends Component {
     });
   }
 
+  handleClick = () => {
+    console.log("this is", this);
+    alert("testing!");
+  };
+  state = { show: false };
+  showModal = () => {
+    this.setState({ show: true });
+    console.log("testing!");
+  };
+  hideModal = () => {
+    this.setState({ show: false });
+  };
+
   async handleSubmit(event) {
     event.preventDefault();
 
     try {
-      console.log("saving new budget");
-      const response = await axios.post("/api/projects", {
+      console.log("saving new task");
+      const response = await axios.post("/api/tasks", {
         taskName: this.state.taskName, //budgetname
         taskHours: this.state.taskHours, //budget desc
         taskRate: this.state.taskRate, //budget amount
-        userId: this.props.user._id //user id for database access
+        projectId: this.props.projectId //user id for database access
       });
       this.props.dismissDialog();
       // dismiss dialog and refres project list
@@ -103,9 +95,9 @@ class TaskForm extends Component {
                 <input
                   className="form-input"
                   type="text"
-                  id="taskTitle"
-                  name="taskTitle"
-                  placeholder="taskTitle"
+                  id="taskName"
+                  name="taskName"
+                  placeholder="taskName"
                   value={this.state.taskName}
                   onChange={this.handleChange}
                 />
