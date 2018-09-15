@@ -4,8 +4,8 @@ mongoose.promise = Promise;
 
 const TaskSchema = new Schema({
   taskName: String,
-  taskDescription: String,
-  taskRatePerHour: Number,
+  taskRate: Number,
+  taskHours: Number,
   projectId: Schema.Types.ObjectId,
   _id: Schema.Types.ObjectId
 });

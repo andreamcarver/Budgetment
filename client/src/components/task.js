@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import TaskForm from "./tasks";
 
 class Task extends Component {
   render() {
@@ -8,9 +9,10 @@ class Task extends Component {
       <div>
         {theTask.taskName}
         <br />
-        {theTask.taskDescription}
+        Rate per Hour: ${theTask.taskRate}
         <br />
-        {theTask.taskRatePerHour}
+        Hours Worked: {theTask.taskHours}
+        <br />
         <button>Add</button>
         <button>Spend</button>
       </div>

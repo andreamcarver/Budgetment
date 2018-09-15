@@ -15,12 +15,10 @@ router.get("/projects/:id", async (req, res, next) => {
     ).lean();
 
     for (project of projects) {
-      console.log(project.projectTitle);
       project.tasks = await Task.find(
         { projectId: project._id },
-        "taskName taskDescription"
+        "taskName taskHours taskRate"
       ).lean();
-      console.log("added tasks", project.tasks);
     }
     console.log("projects =", projects);
     res.json(projects);

@@ -10,7 +10,8 @@ class Projects extends Component {
     this.state = {
       projects: [],
       show: [],
-      modalIsOpen: false
+      modalIsOpen: false,
+      taskModalIsOpen: false
     };
     console.log("in construct", props);
     this.handleNewProject = this.handleNewProject.bind(this);
@@ -30,16 +31,22 @@ class Projects extends Component {
     }
   }
 
-  // TODO i might not need this function
-  // handleNewProject  the program if cancel is hit on the alert
   async handleNewProject(event) {
     console.log("enter create new project");
     event.preventDefault();
     this.setState({ modalIsOpen: true });
   }
+
   foo() {
     this.setState({ modalIsOpen: false });
     this.updateProjectList();
+  }
+
+  //IS this gonna work??
+  async handleNewTask(event) {
+    console.log("creating new task");
+    event.preventDefault();
+    this.setState({ taskModalIsOpen: true });
   }
 
   async handleExpand(id) {
