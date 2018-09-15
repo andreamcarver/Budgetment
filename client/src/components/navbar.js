@@ -43,12 +43,7 @@ class Navbar extends Component {
                 <Link to="/about" className="btn btn-link text-secondary">
                   <span className="text-secondary">about us</span>
                 </Link>
-                <Link
-                  to="/changeInputs"
-                  className="btn btn-link text-secondary"
-                >
-                  <span className="text-secondary">input</span>
-                </Link>
+
                 <Link to="/help" className="btn btn-link text-secondary">
                   <span className="text-secondary">help</span>
                 </Link>
@@ -76,7 +71,6 @@ class Navbar extends Component {
           </div>
           <div className="col-4 col-mr-auto">
             <div id="top-filler" />
-            <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Time Budgetment</h1>
           </div>
         </header>

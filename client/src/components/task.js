@@ -10,6 +10,8 @@ class Task extends Component {
         <p>
           {theTask.taskName}
           <br />
+          Date of Task: {new Date(theTask.taskDate).toDateString()}
+          <br />
           Rate per Hour: ${theTask.taskRate}
           <br />
           Hours Worked: {theTask.taskHours}

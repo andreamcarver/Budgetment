@@ -12,6 +12,7 @@ class TaskForm extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleChange(event) {
@@ -42,7 +43,7 @@ class TaskForm extends Component {
         taskName: this.state.taskName, //budgetname
         taskHours: this.state.taskHours, //budget desc
         taskRate: this.state.taskRate, //budget amount
-        projectId: this.props.projectId //user id for database access
+        projectId: this.props.projectId
       });
       this.props.dismissDialog();
       // dismiss dialog and refres project list
@@ -51,6 +52,11 @@ class TaskForm extends Component {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  async handleCancel(event) {
+    event.preventDefault();
+    this.props.dismissDialog();
   }
 
   render() {
@@ -141,6 +147,12 @@ class TaskForm extends Component {
                 type="submit"
               >
                 Save
+              </button>
+              <button
+                className="btn btn-primary col-1 col-mr-auto"
+                onClick={this.handleSubmit}
+              >
+                Cancel
               </button>
             </div>
           </form>

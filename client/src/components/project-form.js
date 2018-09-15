@@ -11,6 +11,7 @@ class ProjectForm extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleChange(event) {
@@ -39,10 +40,12 @@ class ProjectForm extends Component {
     }
   }
 
+  async handleCancel(event) {
+    event.preventDefault();
+    this.props.dismissDialog();
+  }
+
   render() {
-    // return this.state.redirectTo ? (
-    //   <Redirect to={{ pathname: this.state.redirectTo }} />
-    // ) :
     const backdropStyle = {
       position: "fixed",
       top: 0,
@@ -127,6 +130,12 @@ class ProjectForm extends Component {
                 type="submit"
               >
                 Save
+              </button>
+              <button
+                className="btn btn-primary col-1 col-mr-auto"
+                onClick={this.handleCancel}
+              >
+                Cancel
               </button>
             </div>
           </form>

@@ -17,7 +17,7 @@ router.get("/projects/:id", async (req, res, next) => {
     for (project of projects) {
       project.tasks = await Task.find(
         { projectId: project._id },
-        "taskName taskHours taskRate"
+        "taskName taskHours taskRate taskDate"
       ).lean();
       project.actualBudget = 0;
       for (task of project.tasks) {
@@ -40,12 +40,6 @@ router.post("/projects", async (req, res, next) => {
   } catch (err) {
     console.log("something went wrong creating a project", err);
   }
-});
-
-// tasks routes
-router.get("/tasks/:id", (req, res, next) => {
-  console.log(req.body);
-  console.log("Fetching task");
 });
 
 //POST route for tasks
