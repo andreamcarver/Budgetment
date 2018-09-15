@@ -16,6 +16,7 @@ class Project extends Component {
         </button>
 
         {this.props.expand ? aProject.tasks.map(t => <Task data={t} />) : null}
+        <button>Add Task</button>
       </div>
     );
   }

@@ -7,14 +7,14 @@ class Task extends Component {
     const theTask = this.props.data;
     return (
       <div>
-        {theTask.taskName}
-        <br />
-        Rate per Hour: ${theTask.taskRate}
-        <br />
-        Hours Worked: {theTask.taskHours}
-        <br />
-        <button>Add</button>
-        <button>Spend</button>
+        <p>
+          {theTask.taskName}
+          <br />
+          Rate per Hour: ${theTask.taskRate}
+          <br />
+          Hours Worked: {theTask.taskHours}
+          <br />
+        </p>
       </div>
     );
   }
