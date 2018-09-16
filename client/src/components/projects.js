@@ -86,8 +86,11 @@ class Projects extends Component {
           show={this.state.taskModalIsOpen}
           dismissDialog={this.submitNewTask}
         />
-        ;<h1>Your Projects</h1>
-        <button onClick={this.handleNewProject}>Add New Project</button>
+        <h1>Your Projects</h1>
+        <button class="btn btn-primary" onClick={this.handleNewProject}>
+          Add New Project
+        </button>
+        <p />
         {this.state.projects.map(p => {
           const id = p._id;
           return (

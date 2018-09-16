@@ -92,31 +92,29 @@ class TaskForm extends Component {
           <h4>Task Info</h4>
           <form className="form-horizontal">
             <div className="form-group">
-              <div className="col-1 col-ml-auto">
+              <div>
                 <label className="form-label" htmlFor="project">
                   Task Name
                 </label>
               </div>
-              <div className="col-3 col-mr-auto">
+              <div className="col-6 col-mr-auto">
                 <input
                   className="form-input"
                   type="text"
                   id="taskName"
                   name="taskName"
-                  placeholder="taskName"
                   value={this.state.taskName}
                   onChange={this.handleChange}
                 />
               </div>
             </div>
             <div className="form-group">
-              <div className="col-1 col-ml-auto">
+              <div>
                 <label className="form-label">Charge per Hour</label>
               </div>
-              <div className="col-3 col-mr-auto">
+              <div className="col-6 col-mr-auto">
                 <input
                   className="form-input"
-                  placeholder="taskRate"
                   type="taskRate"
                   name="taskRate"
                   value={this.state.taskRate}
@@ -125,13 +123,12 @@ class TaskForm extends Component {
               </div>
             </div>
             <div className="form-group">
-              <div className="col-1 col-ml-auto">
+              <div>
                 <label className="form-label">Hours Worked</label>
               </div>
-              <div className="col-3 col-mr-auto">
+              <div className="col-6 col-mr-auto">
                 <input
                   className="form-input"
-                  placeholder="taskHours"
                   type="taskHours"
                   name="taskHours"
                   value={this.state.taskHours}
@@ -142,16 +139,13 @@ class TaskForm extends Component {
             <div className="form-group ">
               <div className="col-7" />
               <button
-                className="btn btn-primary col-1 col-mr-auto"
+                className="btn btn-primary"
                 onClick={this.handleSubmit}
                 type="submit"
               >
                 Save
               </button>
-              <button
-                className="btn btn-primary col-1 col-mr-auto"
-                onClick={this.handleSubmit}
-              >
+              <button className="btn btn-primary " onClick={this.handleCancel}>
                 Cancel
               </button>
             </div>

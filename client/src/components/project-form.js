@@ -75,12 +75,12 @@ class ProjectForm extends Component {
           <h4>Project Info</h4>
           <form className="form-horizontal">
             <div className="form-group">
-              <div className="col-1 col-ml-auto">
+              <div>
                 <label className="form-label" htmlFor="project">
                   Project Name
                 </label>
               </div>
-              <div className="col-3 col-mr-auto">
+              <div className="col-6 col-mr-auto">
                 <input
                   className="form-input"
                   type="text"
@@ -93,10 +93,10 @@ class ProjectForm extends Component {
               </div>
             </div>
             <div className="form-group">
-              <div className="col-1 col-ml-auto">
+              <div className="col-6 col-mr-auto">
                 <label className="form-label">Project Description</label>
               </div>
-              <div className="col-3 col-mr-auto">
+              <div>
                 <input
                   className="form-input"
                   placeholder="projectDescription"
@@ -108,10 +108,10 @@ class ProjectForm extends Component {
               </div>
             </div>
             <div className="form-group">
-              <div className="col-1 col-ml-auto">
+              <div>
                 <label className="form-label">Budget Amount</label>
               </div>
-              <div className="col-3 col-mr-auto">
+              <div className="col-6 col-mr-auto">
                 <input
                   className="form-input"
                   placeholder="projectBudget"
@@ -122,17 +122,18 @@ class ProjectForm extends Component {
                 />
               </div>
             </div>
+            <p />
             <div className="form-group ">
-              <div className="col-7" />
+              {/* <div className="col-7" /> */}
               <button
-                className="btn btn-primary col-1 col-mr-auto"
+                className="btn btn-primary col-3 col-mr-auto"
                 onClick={this.handleSubmit}
                 type="submit"
               >
                 Save
               </button>
               <button
-                className="btn btn-primary col-1 col-mr-auto"
+                className="btn btn-primary col-3"
                 onClick={this.handleCancel}
               >
                 Cancel

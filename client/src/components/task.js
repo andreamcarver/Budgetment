@@ -16,6 +16,9 @@ class Task extends Component {
           <br />
           Hours Worked: {theTask.taskHours}
           <br />
+          Total Earned from Task: ${theTask.taskRate * theTask.taskHours}
+          <br />
+          Edit Task / Delete Task
         </p>
       </div>
     );
