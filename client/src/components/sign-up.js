@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 class Signup extends Component {
@@ -7,7 +8,8 @@ class Signup extends Component {
     this.state = {
       username: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      reDirect: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -31,8 +33,19 @@ class Signup extends Component {
       console.log(response);
       if (!response.data.errmsg) {
         console.log("successful signup");
+
+        const response = await axios.post("/user/login", {
+          username: this.state.username,
+          password: this.state.password
+        });
+
+        console.log("login response: ", response);
+        const { password, ...user } = response.data.user; // remove password from user
+        // update App.js state
+        this.props.updateUser({ user: user });
+
         // redirect to login page
-        this.setState({ redirectTo: "/login" });
+        this.setState({ redirectTo: "/" });
       } else {
         console.log("username already taken");
       }
@@ -42,6 +55,9 @@ class Signup extends Component {
   }
 
   render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    }
     return (
       <div className="SignupForm">
         <h4>Sign up</h4>

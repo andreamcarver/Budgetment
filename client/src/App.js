@@ -8,7 +8,6 @@ import Navbar from "./components/navbar";
 import Home from "./components/home";
 import About from "./components/about";
 import Projects from "./components/projects";
-import ChangeInput from "./components/changeInput";
 
 class App extends Component {
   constructor() {
@@ -28,7 +27,6 @@ class App extends Component {
     } catch (err) {
       console.log("something went wrong", err);
     }
-
   }
 
   updateUser(userObject) {
@@ -50,8 +48,10 @@ class App extends Component {
           path="/login"
           render={() => <LoginForm updateUser={this.updateUser} />}
         />
-        <Route path="/signup" component={Signup} />
-        <Route path="/changeInputs" render={() => <ChangeInput />} />
+        <Route
+          path="/signup"
+          render={() => <Signup updateUser={this.updateUser} />}
+        />
         <Route path="/about" render={() => <About />} />
 
         <Route
