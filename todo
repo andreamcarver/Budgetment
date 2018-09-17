@@ -1,10 +1,10 @@
 test create new project in mongoose //done
-create new task in mongoose
-create new expense in mongoose
+create new task in mongoose //done
 refactor package.json to ease deploy // done
 change app state to only use user app.js // done
 getUser to use await line 34 app.js // done
 change server to serve public files
 test deploy to heroku 
-Make Dialog component
-Component for new project (modal)
+Make Dialog component //done
+Component for new project (modal) //done
+actual versus estimated budget; actual budget is subtracted from estimated //done

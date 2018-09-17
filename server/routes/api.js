@@ -9,16 +9,29 @@ router.get("/projects/:id", async (req, res, next) => {
   console.log(req.params.id);
   try {
     // find all projects associated to a user Id
-    const projects = await Project.find(
+    let projects = await Project.find(
       { userId: req.params.id },
       "projectTitle projectBudget projectDate _id"
     ).lean();
 
+    projects = projects.sort(function(a, b) {
+      return b.projectDate - a.projectDate;
+    });
+
+    // Order the projects by projectDate
+    // Look at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
     for (project of projects) {
+      // find all of the tasks for the project (i.e. project._id)
       project.tasks = await Task.find(
         { projectId: project._id },
         "taskName taskHours taskRate taskDate"
       ).lean();
+      // order the task by taskDate
+      project.tasks = project.tasks.sort(function(a, b) {
+        return b.taskDate - a.taskDate;
+      });
+      // compute the actual budget from hours and rate
       project.actualBudget = 0;
       for (task of project.tasks) {
         project.actualBudget += task.taskHours * task.taskRate;
@@ -28,6 +41,16 @@ router.get("/projects/:id", async (req, res, next) => {
     res.json(projects);
   } catch (err) {
     console.log("something went wrong", err);
+  }
+});
+
+router.delete("/project/:id", async (req, res, next) => {
+  try {
+    console.log("deleteing project id", req.params.id);
+    await Task.deleteMany({ projectId: req.params.id });
+    res.json(await Project.deleteOne({ _id: req.params.id }));
+  } catch (err) {
+    console.log("couldnt delete)", err);
   }
 });
 

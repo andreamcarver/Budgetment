@@ -7,7 +7,7 @@ class Home extends Component {
     };
     return (
       <container>
-        <div>
+        <div class="welcomeCard">
           <p className="rcorners1">Welcome to Time Budgetment!</p>
           <img
             alt="home"

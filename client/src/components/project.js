@@ -36,7 +36,12 @@ class Project extends Component {
         >
           Add Task
         </button>
-        <button class="taskbutton icons btn btn-primary">Delete Poject</button>
+        <button
+          class="taskbutton icons btn btn-primary"
+          onClick={event => this.props.handleDelete(event, aProject._id)}
+        >
+          Delete Project
+        </button>
       </div>
     );
   }

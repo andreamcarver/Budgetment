@@ -28,6 +28,7 @@ class App extends Component {
     } catch (err) {
       console.log("something went wrong", err);
     }
+
   }
 
   updateUser(userObject) {

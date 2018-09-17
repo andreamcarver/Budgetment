@@ -21,6 +21,7 @@ class Projects extends Component {
     this.submitNewProject = this.submitNewProject.bind(this);
     this.handleAddTask = this.handleAddTask.bind(this);
     this.submitNewTask = this.submitNewTask.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     console.log("this ", this.props);
   }
 
@@ -39,6 +40,13 @@ class Projects extends Component {
     console.log("enter create new project");
     event.preventDefault();
     this.setState({ modalIsOpen: true });
+  }
+
+  async handleDelete(event, projectId) {
+    console.log("removing project", projectId, "event = ", event);
+    // event.preventDefault();
+    const response = await axios.delete(`/api/project/${projectId}`);
+    this.updateProjectList();
   }
 
   submitNewProject() {
@@ -101,6 +109,7 @@ class Projects extends Component {
               expand={this.state.show.includes(id)}
               handleExpand={this.handleExpand}
               handleAddTask={this.handleAddTask}
+              handleDelete={this.handleDelete}
             />
           );
         })}
