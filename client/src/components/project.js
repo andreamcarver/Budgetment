@@ -8,28 +8,22 @@ class Project extends Component {
     console.log(this.props.handleExpand);
     return (
       <div className="projectCard">
-        <h3>
+        <h3 class="titlecard">
           {aProject.projectTitle}
           <span className="projectDate">
             <span>Created </span>
             {new Date(aProject.projectDate).toDateString()}
           </span>
         </h3>
-        <h5>
+        <h5 class="budgetcard">
           Estimated Budget: ${aProject.projectBudget}
           <br /> Actual Budget: ${aProject.actualBudget}
         </h5>
-
-        {/* <button onClick={() => this.props.handleExpand(aProject._id)}>
-            Expand
-          </button> */}
-
-        {this.props.expand ? aProject.tasks.map(t => <Task data={t} />) : null}
-        {/* <button
-            onClick={event => this.props.handleAddTask(event, aProject._id)}
-          >
-            Add Task
-          </button> */}
+        <div class="taskinfo">
+          {this.props.expand
+            ? aProject.tasks.map(t => <Task data={t} />)
+            : null}
+        </div>
         <button
           class="taskbutton icons btn btn-primary"
           onClick={() => this.props.handleExpand(aProject._id)}

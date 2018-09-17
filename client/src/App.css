@@ -2,20 +2,19 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
-  background-color: #4dd0e1;
-  height: 150px;
+  background-color: #3d474d;
+  height: 80px;
+
   padding: 20px;
   color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 2em;
+  float: right;
+  justify-content: right;
+  font-family: "Pacifico", cursive;
 }
 
 .App-intro {
@@ -28,21 +27,74 @@
   margin: 5px;
 }
 
+/* .taskinfo {
+  background-color: white;
+  border-radius: 10px;
+} */
+
+.navlinks {
+  color: white;
+}
+
+button {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  background-color: #e1f5fe;
+  border-radius: 5px;
+}
+
 .projectCard {
-  background-color: lightgrey;
-  border: 2px solid black;
-  margin: 50px;
-  padding: 10px;
+  background-color: #a19aff;
+  margin: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
   text-align: left;
-  width: 75%;
-  margin: auto;
+  width: 60%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.projectsbg {
+  padding: 10px;
+  margin-bottom: 15px;
+  color: rgb(0, 0, 0);
+}
+
+.projects {
+  font-family: "Pacifico", cursive;
 }
 
 .projectDate {
   font-size: 16px;
   float: right;
+  background-color: rgb(206, 206, 206);
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
 }
 
+.budgetcard {
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.titlecard {
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.taskcard {
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 /* .rcorners1 {
   border-radius: 25px;
   background-color: #73ad21;

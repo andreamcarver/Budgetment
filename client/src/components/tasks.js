@@ -76,7 +76,7 @@ class TaskForm extends Component {
     // The modal "window"
     const modalStyle = {
       backgroundColor: "#fff",
-      borderRadius: 5,
+      borderRadius: 15,
       maxWidth: 500,
       minHeight: 300,
       margin: "0 auto",

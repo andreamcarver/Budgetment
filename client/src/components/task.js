@@ -6,10 +6,9 @@ class Task extends Component {
   render() {
     const theTask = this.props.data;
     return (
-      <div>
+      <div class="taskcard">
         <p>
-          {theTask.taskName}
-          <br />
+          <h5>{theTask.taskName}</h5>
           Date of Task: {new Date(theTask.taskDate).toDateString()}
           <br />
           Rate per Hour: ${theTask.taskRate}

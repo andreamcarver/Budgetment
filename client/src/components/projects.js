@@ -86,7 +86,9 @@ class Projects extends Component {
           show={this.state.taskModalIsOpen}
           dismissDialog={this.submitNewTask}
         />
-        <h1>Your Projects</h1>
+        <div class="projectsbg">
+          <h1 class="projects">Your Projects</h1>
+        </div>
         <button class="btn btn-primary" onClick={this.handleNewProject}>
           Add New Project
         </button>
